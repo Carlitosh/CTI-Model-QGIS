@@ -1,0 +1,221 @@
+{
+    "values": {
+        "inputs": {
+            "altimetria": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 94.0, 
+                            "x": 97.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "altimetria", 
+                            "showSublayersDialog": true, 
+                            "default": null, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Altimetria"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {}, 
+        "group": "Indices topograficos", 
+        "name": "CTI", 
+        "algs": {
+            "TAUDEMDINFINITYFLOWDIRECTIONS_1": {
+                "values": {
+                    "name": "TAUDEMDINFINITYFLOWDIRECTIONS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "pos": {
+                        "values": {
+                            "y": 433.0, 
+                            "x": 99.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "outputsFolded": true, 
+                    "dependencies": [], 
+                    "params": {
+                        "-fel": {
+                            "values": {
+                                "alg": "GDALOGRRASTERCALCULATOR_1", 
+                                "output": "OUTPUT"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "taudem:dinfinityflowdirections", 
+                    "description": "D-Infinity Flow Directions"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "TAUDEMPITREMOVE_1": {
+                "values": {
+                    "name": "TAUDEMPITREMOVE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "pos": {
+                        "values": {
+                            "y": 228.0, 
+                            "x": 198.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "outputsFolded": true, 
+                    "dependencies": [], 
+                    "params": {
+                        "-z": {
+                            "values": {
+                                "name": "altimetria"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "taudem:pitremove", 
+                    "description": "Pit Remove"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "TAUDEMTOPOGRAPHICWETNESSINDEX_1": {
+                "values": {
+                    "name": "TAUDEMTOPOGRAPHICWETNESSINDEX_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "-twi": {
+                            "values": {
+                                "description": "CTI", 
+                                "pos": {
+                                    "values": {
+                                        "y": 762.8866837343749, 
+                                        "x": 361.03579181249995
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "pos": {
+                        "values": {
+                            "y": 618.22199734375, 
+                            "x": 417.7506161093751
+                        }, 
+                        "class": "point"
+                    }, 
+                    "outputsFolded": true, 
+                    "dependencies": [], 
+                    "params": {
+                        "-sca": {
+                            "values": {
+                                "alg": "TAUDEMDINFINITYCONTRIBUTINGAREA_1", 
+                                "output": "-sca"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "-slp": {
+                            "values": {
+                                "alg": "TAUDEMDINFINITYFLOWDIRECTIONS_1", 
+                                "output": "-slp"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "taudem:topographicwetnessindex", 
+                    "description": "Topographic Wetness Index"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "TAUDEMDINFINITYCONTRIBUTINGAREA_1": {
+                "values": {
+                    "name": "TAUDEMDINFINITYCONTRIBUTINGAREA_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "pos": {
+                        "values": {
+                            "y": 555.9045062187498, 
+                            "x": 159.07158362499993
+                        }, 
+                        "class": "point"
+                    }, 
+                    "outputsFolded": true, 
+                    "dependencies": [], 
+                    "params": {
+                        "-o": null, 
+                        "-nc": false, 
+                        "-wg": null, 
+                        "-ang": {
+                            "values": {
+                                "alg": "TAUDEMDINFINITYFLOWDIRECTIONS_1", 
+                                "output": "-ang"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "taudem:dinfinitycontributingarea", 
+                    "description": "D-Infinity Contributing Area"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "GDALOGRRASTERCALCULATOR_1": {
+                "values": {
+                    "name": "GDALOGRRASTERCALCULATOR_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "pos": {
+                        "values": {
+                            "y": 317.0, 
+                            "x": 44.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "outputsFolded": true, 
+                    "dependencies": [], 
+                    "params": {
+                        "INPUT_F": null, 
+                        "BAND_F": "1", 
+                        "INPUT_D": null, 
+                        "INPUT_E": null, 
+                        "BAND_B": "1", 
+                        "BAND_C": "1", 
+                        "BAND_A": "1", 
+                        "RTYPE": 5, 
+                        "EXTRA": null, 
+                        "BAND_D": "1", 
+                        "NO_DATA": null, 
+                        "BAND_E": "1", 
+                        "FORMULA": "A+0.00000001", 
+                        "INPUT_A": {
+                            "values": {
+                                "alg": "TAUDEMPITREMOVE_1", 
+                                "output": "-fel"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "INPUT_B": null, 
+                        "INPUT_C": null
+                    }, 
+                    "active": true, 
+                    "consoleName": "gdalogr:rastercalculator", 
+                    "description": "Raster calculator"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}
